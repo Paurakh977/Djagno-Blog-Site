@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block aku %}active{% endblock aku %}
+{% block content %}
+<style>
+    .ok{
+        height:100%vh;
+        margin-bottom: 8px;
+        display:flex;
+        /* background-color: red; */
+    }
+    .table-wrapper {
+        flex: 1;
+        overflow-y: auto;
+    }
+    *{
+        /* border:1px solid black;   */
+    }
+</style>
+<div class="ok">
+    <div class="table-wrapper">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">S.N</th>
+                    <th scope="col">Tasks</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Time</th>
+                    <th scope="col" colspan='2' style='text-align: center'>Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for task in tasks %} 
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{task.task}}</td>
+                    <td>{{task.desc}}</td>  
+                    <td>{{task.time}}</td>
+                        <td><a href="{% url 'update' task.id task.task task.desc %}" class="btn btn-primary">Update</a></td>
+                        <td><a href="{% url 'hha'    task.id %}" class="btn btn-danger">Delete</a></td> 
+             {% endfor %}       
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}
